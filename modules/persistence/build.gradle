@@ -1,0 +1,7 @@
+plugins { id 'sourcerer.java-library' }
+dependencies {
+    api project(':core')
+    api libs.hikari
+    runtimeOnly libs.h2
+    runtimeOnly libs.postgres
+}

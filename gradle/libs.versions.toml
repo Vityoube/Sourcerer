@@ -1,0 +1,18 @@
+[versions]
+grails = "7.0.17"
+jgit = "7.8.0.202609011348-r"
+caffeine = "3.2.0"
+hikari = "6.3.0"
+h2 = "2.3.232"
+postgres = "42.7.7"
+jackson = "2.19.2"
+
+[libraries]
+jgit = { module = "org.eclipse.jgit:org.eclipse.jgit", version.ref = "jgit" }
+jgit-http-server = { module = "org.eclipse.jgit:org.eclipse.jgit.http.server", version.ref = "jgit" }
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+hikari = { module = "com.zaxxer:HikariCP", version.ref = "hikari" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+postgres = { module = "org.postgresql:postgresql", version.ref = "postgres" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }

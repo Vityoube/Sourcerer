@@ -1,0 +1,8 @@
+rootProject.name = 'sourcerer'
+
+// Every module is its own Gradle project so that task outputs are cached and
+// recompilation is limited to the module (and dependants) that actually changed.
+['core', 'security', 'gitstore', 'persistence', 'service', 'loadtest'].each { name ->
+    include ":${name}"
+    project(":${name}").projectDir = file("modules/${name}")
+}

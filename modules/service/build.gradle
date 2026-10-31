@@ -1,0 +1,8 @@
+plugins { id 'sourcerer.java-library' }
+dependencies {
+    api project(':core')
+    api project(':security')
+    api project(':gitstore')
+    api project(':persistence')
+    implementation libs.caffeine
+}

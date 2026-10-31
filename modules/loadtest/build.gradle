@@ -1,0 +1,9 @@
+plugins {
+    id 'sourcerer.java-library'
+    id 'application'
+}
+
+application {
+    mainClass = 'dev.sourcerer.loadtest.LoadTest'
+    applicationDefaultJvmArgs = ['-XX:+UseZGC', '-Xmx512m']
+}

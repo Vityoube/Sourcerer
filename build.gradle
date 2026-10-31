@@ -1,0 +1,48 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath "org.apache.grails:grails-gradle-plugins:${grailsVersion}"
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'org.apache.grails.gradle.grails-app'
+
+group = 'dev.sourcerer'
+version = '0.1.0'
+
+repositories { mavenCentral() }
+
+java { toolchain { languageVersion = JavaLanguageVersion.of(21) } }
+
+dependencies {
+    implementation platform("org.apache.grails:grails-bom:${grailsVersion}")
+
+    // Domain modules (plain Java, no framework): cached independently by Gradle.
+    implementation project(':service')
+
+    // Deliberately minimal Grails: web + controllers + URL mappings. No GORM/Hibernate, no GSP.
+    implementation 'org.apache.grails:grails-core'
+    implementation 'org.apache.grails:grails-web-boot'
+    implementation 'org.apache.grails:grails-controllers'
+    implementation 'org.apache.grails:grails-url-mappings'
+    implementation 'org.apache.grails:grails-databinding'
+    implementation 'org.apache.grails:grails-logging'
+    implementation 'org.springframework.boot:spring-boot-starter-tomcat'
+    implementation 'org.springframework.boot:spring-boot-starter-logging'
+
+    implementation libs.jgit.http.server
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.compilerArgs += ['-parameters']
+}
+
+tasks.named('bootRun') {
+    // Virtual-thread friendly, low-pause runtime defaults.
+    jvmArgs '-XX:+UseZGC', '-XX:+ZGenerational', '-Xms512m', '-Xmx2g', '-XX:+AlwaysPreTouch'
+}

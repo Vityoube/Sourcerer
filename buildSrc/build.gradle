@@ -1,0 +1,2 @@
+plugins { id 'groovy-gradle-plugin' }
+repositories { mavenCentral() }
